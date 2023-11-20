@@ -1,5 +1,6 @@
 package algorithms.fibonacci;
 
+// O(2^n)
 public class Fibonacci {
 
     public static void main(String[] args) {
