@@ -1,26 +1,36 @@
 package algorithms.binarysearch;
 
-//O(log n)
 public class BinarySearch {
+
+
     public static void main(String[] args) {
         int[] arr = new int[1024];
-        for (int i = 0; i < 1024; i++) {
+        for (int i = 1; i < 1024; i++) {
             arr[i] = i;
         }
-        int start = 0;
-        int end = arr.length - 1;
-        int target = 55;
 
-        System.out.println(binarySearch(arr, start, end, target));
+        int existentTarget = 55;
+        int nonExistentTarget = 2000;
+
+        System.out.println("Target " + existentTarget + " found: " + binarySearch(arr, existentTarget));
+        System.out.println("Target " + nonExistentTarget + " found: " + binarySearch(arr, nonExistentTarget));
     }
 
-    private static boolean binarySearch(int[] arr, int start, int end, int target) {
-        if (start > end) return false;
-        int midIndex = (start + end) / 2;
-        if(arr[midIndex] == target) return true;
-        if(arr[midIndex] > target) {
-            return binarySearch(arr, start, midIndex - 1, target);
+    public static boolean binarySearch(int[] arr, int target) {
+        int start = 0;
+        int end = arr.length - 1;
+
+        while(start <= end) {
+            int midIndex = (start + end) / 2;
+
+            if (arr[midIndex] == target) return true;
+
+            if (arr[midIndex] < target) {
+                start = midIndex + 1;
+            } else {
+                end = midIndex - 1;
+            }
         }
-        return binarySearch(arr, midIndex + 1, end, target);
+        return false;
     }
 }
